@@ -1,4 +1,4 @@
-package com.novosmares.controlador;
+package com.oticaopencenter.controlador;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
