@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Administradores - Ótica OpenCenter</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/list.css}">
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+  <h1>Administradores Cadastrados</h1>
+
+  <a th:href="@{/admins/novo}" class="botao-adicionar">+</a>
+
+  <div class="busca-container">
+    <form th:action="@{/admins}" method="get" class="busca-form">
+      <input type="text" name="search" class="busca-input"
+             placeholder="Buscar administradores..." th:value="${searchTerm}">
+      <button type="submit" class="busca-botao">Pesquisar</button>
+    </form>
+  </div>
+
+  <div class="tabela-container">
+    <table class="tabela">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th class="coluna-acoes">Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="admin : ${admins}">
+        <td th:text="${admin.nome}"></td>
+        <td th:text="${admin.email}"></td>
+        <td>
+          <a th:href="@{/admins/editar/{id}(id=${admin.id})}"
+             class="acao-editar">Editar</a>
+          <a th:href="@{/admins/excluir/{id}(id=${admin.id})}"
+             class="acao-excluir"
+             onclick="return confirm('Confirmar exclusão deste administrador?')">Excluir</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacao">
+        <span th:if="${currentPage > 0}">
+            <a class="pagina-link"
+               th:href="@{/admins(page=${currentPage - 1}, size=${size}, search=${searchTerm})}">Anterior</a>
+        </span>
+
+    <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${i != currentPage + 1}"
+               class="pagina-link"
+               th:href="@{/admins(page=${i - 1}, size=${size}, search=${searchTerm})}"
+               th:text="${i}"></a>
+            <span th:if="${i == currentPage + 1}"
+                  class="pagina-atual"
+                  th:text="${i}"></span>
+        </span>
+
+    <span th:if="${currentPage < totalPages - 1}">
+            <a class="pagina-link"
+               th:href="@{/admins(page=${currentPage + 1}, size=${size}, search=${searchTerm})}">Próxima</a>
+        </span>
+  </div>
+</div>
+
+<script th:src="@{/js/delete-confirmation.js}" defer></script>
+</body>
+</html>

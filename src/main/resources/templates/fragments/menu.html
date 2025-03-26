@@ -1,0 +1,54 @@
+<div th:fragment="menu" xmlns:th="http://www.thymeleaf.org">
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+  <div class="menu-lateral">
+    <div class="logo-container">
+      <img th:src="@{/images/logo-otica.png}" alt="Ótica OpenCenter" class="logo">
+    </div>
+
+    <nav class="navegacao-principal">
+      <ul class="lista-menu">
+        <li>
+          <a th:href="@{/dashboard}" class="item-menu">
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="grupo-menu">
+          <div class="categoria-menu">Operações</div>
+          <ul>
+            <li>
+              <a th:href="@{/vendas}" class="item-menu">
+                <span>Vendas</span>
+              </a>
+            </li>
+            <li>
+              <a th:href="@{/produtos}" class="item-menu">
+                <span>Produtos</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="grupo-menu">
+          <div class="categoria-menu">Administração</div>
+          <ul>
+            <li>
+              <a th:href="@{/admins}" class="item-menu">
+                <span>Administradores</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Logout -->
+    <div class="sessao-usuario">
+      <form th:action="@{/logout}" method="post" class="form-logout">
+        <button type="submit" class="botao-logout">
+          <span>Sair</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

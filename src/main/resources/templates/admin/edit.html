@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Administrador - Ótica OpenCenter</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <link rel="stylesheet" th:href="@{/css/edit.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+<div class="conteudo">
+    <h1>Editar Credenciais</h1>
+
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <form th:action="@{/admins/atualizar/{id}(id=${admin.id})}" th:object="${admin}" method="post">
+        <fieldset>
+            <legend>Informações do Administrador</legend>
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" th:field="*{email}" required>
+            </div>
+
+            <div class="password-section">
+                <h3>Alterar Senha de Acesso</h3>
+
+                <div class="form-group">
+                    <label for="currentPassword">Senha Atual:</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">Nova Senha:</label>
+                    <input type="password" id="newPassword" name="newPassword">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Nova Senha:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="botao-salvar">Atualizar Dados</button>
+            <a th:href="@{/admins}" class="botao-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

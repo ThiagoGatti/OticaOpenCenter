@@ -1,0 +1,32 @@
+/* base css */
+:root {
+  --fonte-principal: 'Helvetica', 'Arial', sans-serif;
+  --azul-principal: #0077b6;
+  --azul-escuro: #005f73;
+  --vermelho: #dc3545;
+  --vermelho-escuro: #c82333;
+  --cinza-claro: #f4f4f4;
+  --cinza-borda: #ccc;
+  --sombra-suave: 0 2px 15px rgba(0,0,0,0.1);
+  --borda-arredondada: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fonte-principal);
+}
+
+body {
+  background-color: var(--cinza-claro);
+}
+
+#brasil-fields {
+    transition: all 0.3s ease;
+}
+
+.hidden-fields {
+    display: none;
+    opacity: 0;
+}

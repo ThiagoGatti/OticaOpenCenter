@@ -1,0 +1,128 @@
+/* users.css */
+:root {
+  --menu-width: 250px;
+  --form-padding: 2rem;
+}
+
+/* Layout Principal */
+body {
+  display: grid;
+  grid-template-columns: var(--menu-width) 1fr;
+  min-height: 100vh;
+  background-color: var(--cinza-claro);
+}
+
+.conteudo {
+  padding: var(--form-padding);
+  margin-left: var(--menu-width);
+  height: calc(100vh - 2 * var(--form-padding));
+  overflow-y: auto;
+}
+
+/* Formulário */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--borda-arredondada);
+  box-shadow: var(--sombra-suave);
+}
+
+fieldset {
+  border: 1px solid var(--cinza-borda);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+legend {
+  font-weight: 600;
+  color: var(--azul-principal);
+  padding: 0 0.5rem;
+}
+
+/* Grupos de Campos */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Campos de Entrada */
+input, select, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--cinza-borda);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--azul-principal);
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+  outline: none;
+}
+
+/* Layout de Colunas */
+.form-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.col-left, .col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Botão de Submit */
+button[type="submit"] {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--azul-principal);
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--azul-escuro);
+  transform: translateY(-2px);
+}
+
+/* Ajustes para Mobile */
+@media (max-width: 1200px) {
+  form {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .form-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  .conteudo {
+    margin-left: 0;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .menu-lateral {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}
