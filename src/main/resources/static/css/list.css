@@ -1,5 +1,6 @@
 /* list css */
-
+css
+Copy
 .conteudo {
   margin-left: 250px;
   padding: 20px;
@@ -7,7 +8,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative; /* Adicionado */
+  z-index: 1; /* Adicionado para garantir que o conteúdo fique atrás do menu */
 }
+
 
 .conteudo h1 {
   color: #333;
@@ -199,6 +203,9 @@
   transform: scale(1.1);
 }
 
+.menu-lateral {
+  z-index: 1001;
+}
 @media (max-width: 768px) {
   .conteudo {
     margin-left: 0;

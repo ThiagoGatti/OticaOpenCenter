@@ -1,76 +1,109 @@
+/* menu css */
+
 .menu-lateral {
-    width: 250px;
-    height: 100vh;
-    background: #2c3e50;
-    padding: 20px;
-    position: fixed;
-    color: white;
-    display: flex;
-    flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--azul-principal);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  box-shadow: 3px 0 5px rgba(0,0,0,0.2);
 }
 
-.logo-container {
-    text-align: center;
-    margin-bottom: 30px;
+.menu-lateral h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8em;
+  color: #fff;
+  text-transform: uppercase;
 }
 
-.logo {
-    max-width: 180px;
-    height: auto;
+.menu-lateral ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.navegacao-principal {
-    flex: 1;
+.menu-lateral ul li {
+  position: relative;
+  margin: 12px 0;
 }
 
-.lista-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.menu-lateral ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 15px;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.grupo-menu {
-    margin: 25px 0;
+.menu-lateral ul li a:hover {
+  background-color: var(--azul-escuro);
+  transform: translateX(10px);
 }
 
-.categoria-menu {
-    color: #95a5a6;
-    font-size: 0.9em;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.submenu-content {
+  display: none;
+  position: absolute;
+  top: -15px;
+  left: calc(100% - 15px);
+  min-width: 220px;
+  background: var(--azul-escuro);
+  z-index: 1001;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+  border-radius: 0 8px 8px 0;
 }
 
-.item-menu {
-    display: block;
-    padding: 12px 20px;
-    color: #ecf0f1;
-    text-decoration: none;
-    transition: background 0.3s;
-    border-radius: 4px;
-    margin: 4px 0;
+.submenu:hover .submenu-content {
+  display: block;
+  animation: slideIn 0.3s forwards;
 }
 
-.item-menu:hover {
-    background: #34495e;
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-.sessao-usuario {
-    padding: 20px 0;
-    border-top: 1px solid #34495e;
+.submenu-trigger {
+  position: relative;
+  padding-right: 40px !important;
 }
 
-.botao-logout {
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    color: inherit;
-    cursor: pointer;
-    padding: 12px 20px;
-    font-size: 1em;
+.submenu-trigger::after {
+  content: "›";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  transition: all 0.3s ease;
 }
 
-.botao-logout:hover {
-    background: #34495e;
+.submenu:hover .submenu-trigger::after {
+  transform: translateY(-50%) rotate(90deg);
+  right: 15px;
+}
+
+.submenu-content li {
+  margin: 0;
+  border-bottom: 1px solid #004b5f;
+}
+
+.submenu-content li:last-child {
+  border-bottom: none;
+}
+
+.submenu-content a {
+  font-size: 14px;
+  padding: 12px 25px;
+  transition: all 0.2s ease;
+}
+
+.submenu-content a:hover {
+  background-color: #004b5f;
+  transform: translateX(5px);
 }

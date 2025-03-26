@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Detalhes da Venda - Ótica OpenCenter</title>
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/detalhes.css}">
+  <link rel="stylesheet" th:href="@{/css/list.css}">
+
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+  <h1>Detalhes da Venda</h1>
+
+  <div class="detalhes-container">
+    <!-- Seção de Informações Básicas -->
+    <div class="detalhes-section">
+      <h3>Informações da Venda</h3>
+      <div class="detalhes-item">
+        <span class="detalhes-label">Data Venda:</span>
+        <span th:text="${#temporals.format(venda.dataVenda, 'dd/MM/yyyy')}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span class="detalhes-label">Cliente:</span>
+        <span th:text="${venda.nomeComprador}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span class="detalhes-label">Celular:</span>
+        <span th:text="${venda.celular}"></span>
+      </div>
+    </div>
+
+    <!-- Seção Técnica -->
+    <div class="detalhes-section">
+      <h3>Especificações Técnicas</h3>
+      <div class="detalhes-columns">
+        <div class="column">
+          <h4>Olho Direito (OD)</h4>
+          <div class="detalhes-item">
+            <span>Esférico:</span>
+            <span th:text="${venda.odEsferico}"></span>
+          </div>
+          <div class="detalhes-item">
+            <span>Cilíndrico:</span>
+            <span th:text="${venda.odCilindrico}"></span>
+          </div>
+        </div>
+
+        <div class="column">
+          <h4>Olho Esquerdo (OE)</h4>
+          <div class="detalhes-item">
+            <span>Esférico:</span>
+            <span th:text="${venda.oeEsferico}"></span>
+          </div>
+          <div class="detalhes-item">
+            <span>Cilíndrico:</span>
+            <span th:text="${venda.oeCilindrico}"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detalhes-item">
+        <span>DP:</span>
+        <span th:text="${venda.dp}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span>Adição:</span>
+        <span th:text="${venda.adicao}"></span>
+      </div>
+    </div>
+
+    <!-- Seção Finalização -->
+    <div class="detalhes-section">
+      <h3>Finalização</h3>
+      <div class="detalhes-item">
+        <span>Armação:</span>
+        <span th:text="${venda.armacao}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span>Lente:</span>
+        <span th:text="${venda.lente}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span>Total:</span>
+        <span th:text="${#numbers.formatCurrency(venda.total)}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="acoes-detalhes">
+    <a th:href="@{/vendas}" class="botao-voltar">Voltar</a>
+  </div>
+</div>
+</body>
+</html>

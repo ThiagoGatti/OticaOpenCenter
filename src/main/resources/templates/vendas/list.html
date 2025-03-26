@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vendas - Ótica OpenCenter</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+    <h1>Histórico de Vendas</h1>
+
+    <a th:href="@{/vendas/nova}" class="botao-adicionar">+</a>
+
+    <div class="busca-container">
+        <form th:action="@{/vendas}" method="get" class="busca-form">
+            <input type="text" name="search" class="busca-input"
+                   placeholder="Buscar por data, nome ou celular" th:value="${searchTerm}">
+            <button type="submit" class="busca-botao">Pesquisar</button>
+        </form>
+    </div>
+
+    <div class="tabela-container">
+        <table class="tabela">
+            <thead>
+            <tr>
+                <th>Data Venda</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Entrega</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="venda : ${vendas}">
+                <td th:text="${#temporals.format(venda.dataVenda, 'dd/MM/yyyy')}"></td>
+                <td th:text="${venda.nomeComprador}"></td>
+                <td th:text="${#numbers.formatCurrency(venda.total)}"></td>
+                <td th:text="${#temporals.format(venda.dataEntrega, 'dd/MM/yyyy')}"></td>
+                <td>
+                    <a th:href="@{/vendas/{id}(id=${venda.id})}" class="acao-detalhes">Detalhes</a>
+
+                    <a th:href="@{/vendas/excluir/{id}(id=${venda.id})}"
+                       class="acao-excluir"
+                       onclick="return confirm('Excluir esta venda?')">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="paginacao" th:if="${totalPages > 0}">
+    <span th:if="${currentPage > 0}">
+        <a class="pagina-link"
+           th:href="@{/vendas(page=${currentPage - 1}, size=${size}, search=${searchTerm})}">←</a>
+    </span>
+
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${i != currentPage + 1}"
+           class="pagina-link"
+           th:href="@{/vendas(page=${i - 1}, size=${size}, search=${searchTerm})}"
+           th:text="${i}"></a>
+        <span th:if="${i == currentPage + 1}"
+              class="pagina-atual"
+              th:text="${i}"></span>
+    </span>
+
+        <span th:if="${currentPage < totalPages - 1}">
+        <a class="pagina-link"
+           th:href="@{/vendas(page=${currentPage + 1}, size=${size}, search=${searchTerm})}">→</a>
+    </span>
+    </div>
+
+    <div th:if="${vendas.empty}" class="sem-resultados">
+        Nenhuma venda encontrada
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nova Venda - Ótica OpenCenter</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <link rel="stylesheet" th:href="@{/css/edit.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>
+        function setTodayDate(fieldId) {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById(fieldId).value = today;
+        }
+    </script>
+    <script th:src="@{/js/mask.js}"></script>
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+    <h1>Registrar Nova Venda</h1>
+
+    <form th:action="@{/vendas}" th:object="${venda}" method="post">
+
+        <!-- Seção de Datas -->
+        <div class="form-section">
+            <h3>Datas</h3>
+            <div class="form-group">
+                <label>Data da Venda:</label>
+                <input type="date" id="dataVenda" th:field="*{dataVenda}">
+                <button type="button" onclick="setTodayDate('dataVenda')">Usar Hoje</button>
+            </div>
+
+            <div class="form-group">
+                <label>Data de Entrega:</label>
+                <input type="date" id="dataEntrega" th:field="*{dataEntrega}">
+                <button type="button" onclick="setTodayDate('dataEntrega')">Usar Hoje</button>
+            </div>
+        </div>
+
+        <!-- Dados do Cliente -->
+        <div class="form-section">
+            <h3>Dados do Cliente</h3>
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" th:field="*{nomeComprador}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Celular:</label>
+                <input type="tel" id="numeroCelular"
+                       th:field="*{celular}"
+                       placeholder="(  ) _____-____"
+                       autocomplete="tel"
+                       inputmode="numeric"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Especificações Técnicas</h3>
+
+            <div class="form-columns">
+                <div class="column">
+                    <h4>Olho Direito (OD)</h4>
+                    <div class="form-group">
+                        <label>Esférico:</label>
+                        <input type="number" step="0.25" th:field="*{odEsferico}">
+                    </div>
+                    <div class="form-group">
+                        <label>Cilíndrico:</label>
+                        <input type="number" step="0.25" th:field="*{odCilindrico}">
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h4>Olho Esquerdo (OE)</h4>
+                    <div class="form-group">
+                        <label>Esférico:</label>
+                        <input type="number" step="0.25" th:field="*{oeEsferico}">
+                    </div>
+                    <div class="form-group">
+                        <label>Cilíndrico:</label>
+                        <input type="number" step="0.25" th:field="*{oeCilindrico}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>DP (Distância Pupilar):</label>
+                <input type="number" step="0.1" th:field="*{dp}">
+            </div>
+
+            <div class="form-group">
+                <label>Adição:</label>
+                <input type="number" step="0.25" th:field="*{adicao}">
+            </div>
+        </div>
+
+        <!-- Finalização -->
+        <div class="form-section">
+            <div class="form-group">
+                <label>Armação:</label>
+                <input type="text" th:field="*{armacao}">
+            </div>
+
+            <div class="form-group">
+                <label>Lente:</label>
+                <input type="text" th:field="*{lente}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Total:</label>
+                <input type="number" step="0.01" th:field="*{total}" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="botao-salvar">Salvar Venda</button>
+            <a th:href="@{/vendas}" class="botao-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
