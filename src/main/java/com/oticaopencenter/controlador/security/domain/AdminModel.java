@@ -18,5 +18,4 @@ public class AdminModel {
     private String email;
     private String senha;
 
-    // Mantidos os getters/setters caso precise de customizações futuras
 }

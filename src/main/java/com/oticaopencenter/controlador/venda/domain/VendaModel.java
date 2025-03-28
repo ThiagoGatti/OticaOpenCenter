@@ -20,8 +20,6 @@ public class VendaModel {
     private LocalDate dataEntrega;
     private String nomeComprador;
     private String celular;
-
-    // Detalhes Ópticos
     private String lente;
     private BigDecimal odEsferico;
     private BigDecimal odCilindrico;

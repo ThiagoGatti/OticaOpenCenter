@@ -55,22 +55,21 @@ public class VendaUsecaseImpl implements VendaUsecase {
         if (vendaDto.armacaoId() != null) {
             ArmacaoModel armacao = armacaoUsecase.findById(vendaDto.armacaoId());
 
-            // Validação do estoque
             if (armacao.getQuantidade() <= 0) {
                 throw new IllegalStateException("Estoque insuficiente");
             }
 
             ArmacaoDto updateDto = new ArmacaoDto(
-                    armacao.getMarca(),          // String
-                    armacao.getNotaFiscal(),     // String
-                    armacao.getReferencia(),     // String
-                    armacao.getCusto(),          // BigDecimal
-                    armacao.getPrecoVenda(),     // BigDecimal
-                    armacao.getQuantidade() - 1, // Integer
-                    armacao.getCodigo()          // String
+                    armacao.getMarca(),
+                    armacao.getNotaFiscal(),
+                    armacao.getReferencia(),
+                    armacao.getCusto(),
+                    armacao.getPrecoVenda(),
+                    armacao.getQuantidade() - 1,
+                    armacao.getCodigo()
             );
 
-            armacaoUsecase.updateArmacao(armacao.getId(), updateDto); // Use o DTO
+            armacaoUsecase.updateArmacao(armacao.getId(), updateDto);
         }
 
         VendaModel venda = new VendaModel();

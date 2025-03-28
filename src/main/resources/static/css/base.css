@@ -2,10 +2,10 @@
 :root {
   --fonte-principal: 'Helvetica', 'Arial', sans-serif;
 
-  /* Tema Roxo mais Escuro */
-  --azul-principal: #6a0dad;  /* Roxo principal */
-  --azul-escuro: #4b0082;     /* Roxo ainda mais fechado */
-  --azul-claro: #a020f0;      /* Roxo claro (se precisar) */
+
+  --azul-principal: #6a0dad;
+  --azul-escuro: #4b0082;
+  --azul-claro: #a020f0;
 
   --vermelho: #dc3545;
   --vermelho-escuro: #c82333;
@@ -26,7 +26,6 @@
 
 body {
   margin: 0;
-  /* Espaço para o menu lateral fixo (250px) */
   padding-left: 250px;
   box-sizing: border-box;
   background-color: #fff;

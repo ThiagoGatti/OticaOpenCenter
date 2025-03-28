@@ -61,7 +61,7 @@ public class VendaController {
                 BigDecimal.ZERO, // oeCilindrico
                 BigDecimal.ZERO, // dp
                 BigDecimal.ZERO, // adicao
-                null,              // armacao
+                null,            // armacao
                 BigDecimal.ZERO  // total
         ));
         return "vendas/form";
@@ -81,7 +81,7 @@ public class VendaController {
     @PostMapping
     public String createVenda(@ModelAttribute("vendaForm") VendaForm form) {
         VendaDto dto = new VendaDto(
-                LocalDate.now(), // Data venda automática
+                LocalDate.now(),
                 form.getDataEntrega(),
                 form.getNomeComprador(),
                 form.getCelular(),

@@ -19,7 +19,6 @@ public class AdminUsecase {
         this.repository = repository;
     }
 
-    // Métodos CRUD
     public List<AdminModel> findAllAdmins() {
         return repository.findAll();
     }

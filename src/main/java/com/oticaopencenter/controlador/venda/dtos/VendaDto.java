@@ -15,7 +15,7 @@ public record VendaDto(
         BigDecimal oeCilindrico,
         BigDecimal dp,
         BigDecimal adicao,
-        Long armacaoId, // Alterado de String para Long
+        Long armacaoId,
         BigDecimal total
 ) {
     public VendaDto() {
@@ -31,7 +31,7 @@ public record VendaDto(
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
-                null, // ID da armação como null por padrão
+                null,
                 BigDecimal.ZERO
         );
     }

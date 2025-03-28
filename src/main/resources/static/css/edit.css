@@ -1,7 +1,6 @@
 /* edit css */
 
 .conteudo {
-  /* body já tem padding-left: 250px para o menu fixo */
   padding: 20px;
   min-height: 100vh;
   display: flex;
@@ -90,7 +89,7 @@ legend {
 .form-group select:focus {
   border-color: var(--azul-principal);
   outline: none;
-  box-shadow: 0 0 8px rgba(106,13,173,0.2); /* roxo principal */
+  box-shadow: 0 0 8px rgba(106,13,173,0.2);
 }
 
 .form-actions {
@@ -201,7 +200,6 @@ button:active {
     transform: scale(0.95);
 }
 
-/* Estilização específica para os botões "Usar Hoje" */
 button[onclick^="setTodayDate"] {
     background-color: #4CAF50; /* Verde */
     color: white;

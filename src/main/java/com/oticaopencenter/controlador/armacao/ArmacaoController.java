@@ -89,7 +89,7 @@ public class ArmacaoController {
     public String saveArmacao(@ModelAttribute("armacaoForm") @Valid ArmacaoForm form,
                               BindingResult result, Model model) {
 
-        // Validação de código único
+
         if (form.getId() == null && armacaoService.existsByCodigo(form.getCodigo())) {
             result.rejectValue("codigo", "duplicate.codigo", "Código já está em uso");
         }

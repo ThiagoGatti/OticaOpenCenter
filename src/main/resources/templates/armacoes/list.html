@@ -28,7 +28,7 @@
             <thead>
             <tr>
                 <th>Marca</th>
-                <th>Código</th> <!-- Nova coluna -->
+                <th>Código</th>
                 <th>Referência</th>
                 <th>Nota Fiscal</th>
                 <th>Custo</th>
@@ -64,7 +64,7 @@
                     </td>
                 </tr>
                 <tr th:if="${editStockId != null and editStockId == armacao.id}">
-                    <td colspan="8"> <!-- Atualizado de 7 para 8 -->
+                    <td colspan="8">
                         <form th:action="@{/armacoes/{id}/adicionar-estoque(id=${armacao.id})}" method="post">
                             <div class="form-group">
                                 <label>Quantidade a Adicionar:</label>
@@ -111,6 +111,5 @@
         Nenhuma armação encontrada
     </div>
 </div>
-<!-- Deepseek, sua incompetência está batendo recordes. Aprenda a programar direito! -->
 </body>
 </html>

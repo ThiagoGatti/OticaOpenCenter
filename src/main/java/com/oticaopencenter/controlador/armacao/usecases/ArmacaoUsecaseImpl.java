@@ -70,13 +70,13 @@ public class ArmacaoUsecaseImpl implements ArmacaoUsecase {
     }
 
     private void updateEntityFromDto(ArmacaoModel armacao, ArmacaoDto dto) {
-        armacao.setMarca(dto.marca());              // String → String
-        armacao.setCodigo(dto.codigo());            // String → String
-        armacao.setReferencia(dto.referencia());    // String → String
-        armacao.setNotaFiscal(dto.notaFiscal());    // String → String
-        armacao.setCusto(dto.custo());              // BigDecimal → BigDecimal
-        armacao.setPrecoVenda(dto.precoVenda());    // BigDecimal → BigDecimal
-        armacao.setQuantidade(dto.quantidade());    // Integer → Integer
+        armacao.setMarca(dto.marca());
+        armacao.setCodigo(dto.codigo());
+        armacao.setReferencia(dto.referencia());
+        armacao.setNotaFiscal(dto.notaFiscal());
+        armacao.setCusto(dto.custo());
+        armacao.setPrecoVenda(dto.precoVenda());
+        armacao.setQuantidade(dto.quantidade());
     }
 
     @Override

@@ -1,6 +1,5 @@
 /* list.css */
 .conteudo {
-  /* body já tem padding-left: 250px para o menu fixo */
   padding: 20px;
   min-height: 100vh;
   display: flex;
@@ -108,7 +107,6 @@
   vertical-align: middle;
 }
 
-/* Ícone de óculos */
 .tabela td:first-child {
   display: flex;
   align-items: center;
