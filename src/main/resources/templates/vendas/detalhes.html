@@ -3,6 +3,7 @@
 <head>
   <title>Detalhes da Venda - Ótica OpenCenter</title>
   <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/edit.css}">
   <link rel="stylesheet" th:href="@{/css/detalhes.css}">
   <link rel="stylesheet" th:href="@{/css/list.css}">
 
@@ -14,7 +15,6 @@
   <h1>Detalhes da Venda</h1>
 
   <div class="detalhes-container">
-    <!-- Seção de Informações Básicas -->
     <div class="detalhes-section">
       <h3>Informações da Venda</h3>
       <div class="detalhes-item">
@@ -73,9 +73,9 @@
     <!-- Seção Finalização -->
     <div class="detalhes-section">
       <h3>Finalização</h3>
-      <div class="detalhes-item">
+      <div class="detalhes-item" th:if="${venda.armacaoId != null}">
         <span>Armação:</span>
-        <span th:text="${venda.armacao}"></span>
+        <span th:text="${armacao != null ? armacao.marca + ' - ' + armacao.codigo : 'Armação não encontrada'}"></span>
       </div>
       <div class="detalhes-item">
         <span>Lente:</span>

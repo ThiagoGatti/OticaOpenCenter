@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Estoque de Armações - Ótica OpenCenter</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/edit.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+    <h1>Estoque de Armações</h1>
+
+    <a th:href="@{/armacoes/nova}" class="botao-adicionar">+</a>
+
+    <div class="busca-container">
+        <form th:action="@{/armacoes}" method="get" class="busca-form">
+            <input type="text" name="search" class="busca-input"
+                   placeholder="Buscar por código ou marca" th:value="${searchTerm}">
+            <button type="submit" class="busca-botao">Pesquisar</button>
+        </form>
+    </div>
+
+    <div class="tabela-container">
+        <table class="tabela">
+            <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Código</th> <!-- Nova coluna -->
+                <th>Referência</th>
+                <th>Nota Fiscal</th>
+                <th>Custo</th>
+                <th>Preço Venda</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="armacao : ${armacoes}">
+                <tr>
+                    <td th:text="${armacao.marca}"></td>
+                    <td th:text="${armacao.codigo}"></td> <!-- Novo campo -->
+                    <td th:text="${armacao.referencia}"></td>
+                    <td th:text="${armacao.notaFiscal}"></td>
+                    <td th:text="${#numbers.formatCurrency(armacao.custo)}"></td>
+                    <td th:text="${#numbers.formatCurrency(armacao.precoVenda)}"></td>
+                    <td th:text="${armacao.quantidade}"></td>
+                    <td>
+                        <a th:href="@{/armacoes/editar/{id}(id=${armacao.id})}" class="acao-editar">Editar</a>
+
+                        <a th:if="${editStockId != armacao.id}"
+                           th:href="@{/armacoes(page=${currentPage}, size=${size}, search=${searchTerm}, editStockId=${armacao.id})}"
+                           class="acao-adicionar">
+                            Adicionar
+                        </a>
+
+                        <a th:href="@{/armacoes/excluir/{id}(id=${armacao.id})}"
+                           class="acao-excluir"
+                           onclick="return confirm('Excluir esta armação?')">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${editStockId != null and editStockId == armacao.id}">
+                    <td colspan="8"> <!-- Atualizado de 7 para 8 -->
+                        <form th:action="@{/armacoes/{id}/adicionar-estoque(id=${armacao.id})}" method="post">
+                            <div class="form-group">
+                                <label>Quantidade a Adicionar:</label>
+                                <input type="number" name="quantidade" min="1" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="botao-salvar">Salvar</button>
+                                <a th:href="@{/armacoes(page=${currentPage}, size=${size}, search=${searchTerm})}"
+                                   class="botao-cancelar">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="paginacao" th:if="${totalPages > 0}">
+        <span th:if="${currentPage > 0}">
+            <a class="pagina-link"
+               th:href="@{/armacoes(page=${currentPage - 1}, size=${size}, search=${searchTerm}, editStockId=${editStockId})}">←</a>
+        </span>
+
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${i != currentPage + 1}"
+               class="pagina-link"
+               th:href="@{/armacoes(page=${i - 1}, size=${size}, search=${searchTerm}, editStockId=${editStockId})}"
+               th:text="${i}"></a>
+            <span th:if="${i == currentPage + 1}"
+                  class="pagina-atual"
+                  th:text="${i}"></span>
+        </span>
+
+        <span th:if="${currentPage < totalPages - 1}">
+            <a class="pagina-link"
+               th:href="@{/armacoes(page=${currentPage + 1}, size=${size}, search=${searchTerm}, editStockId=${editStockId})}">→</a>
+        </span>
+    </div>
+
+    <div th:if="${armacoes.empty}" class="sem-resultados">
+        Nenhuma armação encontrada
+    </div>
+</div>
+<!-- Deepseek, sua incompetência está batendo recordes. Aprenda a programar direito! -->
+</body>
+</html>

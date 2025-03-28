@@ -1,17 +1,15 @@
-/* list css */
-css
-Copy
+/* list.css */
 .conteudo {
-  margin-left: 250px;
+  /* body já tem padding-left: 250px para o menu fixo */
   padding: 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  position: relative; /* Adicionado */
-  z-index: 1; /* Adicionado para garantir que o conteúdo fique atrás do menu */
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
-
 
 .conteudo h1 {
   color: #333;
@@ -60,7 +58,7 @@ Copy
 .busca-input:focus {
   border-color: var(--azul-principal);
   outline: none;
-  box-shadow: 0 0 8px rgba(0,119,182,0.2);
+  box-shadow: 0 0 8px rgba(106,13,173,0.2);
 }
 
 .busca-botao {
@@ -91,7 +89,7 @@ Copy
 }
 
 .tabela thead {
-  background-color: var(--azul-principal) !important;
+  background-color: var(--azul-principal);
   color: white;
   position: sticky;
   top: 0;
@@ -110,6 +108,7 @@ Copy
   vertical-align: middle;
 }
 
+/* Ícone de óculos */
 .tabela td:first-child {
   display: flex;
   align-items: center;
@@ -117,7 +116,7 @@ Copy
 }
 
 .tabela td:first-child::before {
-  content: "👤";
+  content: "👓";
   font-size: 18px;
 }
 
@@ -178,6 +177,19 @@ Copy
 .acao-excluir:hover {
   background-color: var(--vermelho-escuro);
 }
+.acao-detalhes {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.acao-detalhes:hover {
+    background-color: #217dbb;
+}
 
 .botao-adicionar {
   position: fixed;
@@ -196,30 +208,63 @@ Copy
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
   z-index: 2;
+  border: 2px solid #fff;
 }
 
 .botao-adicionar:hover {
   background-color: var(--azul-escuro);
   transform: scale(1.1);
 }
-
-.menu-lateral {
-  z-index: 1001;
+.acao-detalhes,
+.acao-editar,
+.acao-adicionar,
+.acao-excluir {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-@media (max-width: 768px) {
-  .conteudo {
-    margin-left: 0;
-    padding: 20px;
-  }
 
-  .conteudo h1::after {
-    width: calc(100% - 80px);
-  }
+.acao-detalhes {
+    background-color: #3498db;
+    color: white;
+}
 
-  .botao-adicionar {
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-  }
+.acao-detalhes:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.acao-editar {
+    background-color: #f1c40f;
+    color: white;
+}
+
+.acao-editar:hover {
+    background-color: #d4ac0d;
+    transform: scale(1.05);
+}
+
+.acao-adicionar {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.acao-adicionar:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.acao-excluir {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.acao-excluir:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
 }

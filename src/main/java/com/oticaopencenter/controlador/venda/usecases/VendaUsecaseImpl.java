@@ -1,5 +1,8 @@
 package com.oticaopencenter.controlador.venda.usecases;
 
+import com.oticaopencenter.controlador.armacao.domain.ArmacaoModel;
+import com.oticaopencenter.controlador.armacao.dtos.ArmacaoDto;
+import com.oticaopencenter.controlador.armacao.usecases.ArmacaoUsecase;
 import com.oticaopencenter.controlador.venda.domain.VendaModel;
 import com.oticaopencenter.controlador.venda.dtos.VendaDto;
 import com.oticaopencenter.controlador.venda.repository.VendaRepository;
@@ -16,9 +19,11 @@ import java.time.format.DateTimeParseException;
 public class VendaUsecaseImpl implements VendaUsecase {
 
     private final VendaRepository vendaRepository;
+    private final ArmacaoUsecase armacaoUsecase;
 
-    public VendaUsecaseImpl(VendaRepository vendaRepository) {
+    public VendaUsecaseImpl(VendaRepository vendaRepository, ArmacaoUsecase armacaoUsecase) {
         this.vendaRepository = vendaRepository;
+        this.armacaoUsecase = armacaoUsecase;
     }
 
     @Override
@@ -47,8 +52,28 @@ public class VendaUsecaseImpl implements VendaUsecase {
     }
     @Override
     public VendaModel createVenda(VendaDto vendaDto) {
-        VendaModel venda = new VendaModel();
+        if (vendaDto.armacaoId() != null) {
+            ArmacaoModel armacao = armacaoUsecase.findById(vendaDto.armacaoId());
 
+            // Validação do estoque
+            if (armacao.getQuantidade() <= 0) {
+                throw new IllegalStateException("Estoque insuficiente");
+            }
+
+            ArmacaoDto updateDto = new ArmacaoDto(
+                    armacao.getMarca(),          // String
+                    armacao.getNotaFiscal(),     // String
+                    armacao.getReferencia(),     // String
+                    armacao.getCusto(),          // BigDecimal
+                    armacao.getPrecoVenda(),     // BigDecimal
+                    armacao.getQuantidade() - 1, // Integer
+                    armacao.getCodigo()          // String
+            );
+
+            armacaoUsecase.updateArmacao(armacao.getId(), updateDto); // Use o DTO
+        }
+
+        VendaModel venda = new VendaModel();
         venda.setDataVenda(vendaDto.dataVenda());
         venda.setDataEntrega(vendaDto.dataEntrega());
         venda.setNomeComprador(vendaDto.nomeComprador());
@@ -60,7 +85,7 @@ public class VendaUsecaseImpl implements VendaUsecase {
         venda.setOeCilindrico(vendaDto.oeCilindrico() != null ? vendaDto.oeCilindrico() : BigDecimal.ZERO);
         venda.setDp(vendaDto.dp() != null ? vendaDto.dp() : BigDecimal.ZERO);
         venda.setAdicao(vendaDto.adicao() != null ? vendaDto.adicao() : BigDecimal.ZERO);
-        venda.setArmacao(vendaDto.armacao());
+        venda.setArmacaoId(vendaDto.armacaoId());
         venda.setTotal(vendaDto.total() != null ? vendaDto.total() : BigDecimal.ZERO);
 
         return vendaRepository.save(venda);
@@ -81,7 +106,7 @@ public class VendaUsecaseImpl implements VendaUsecase {
         venda.setOeCilindrico(vendaDto.oeCilindrico());
         venda.setDp(vendaDto.dp());
         venda.setAdicao(vendaDto.adicao());
-        venda.setArmacao(vendaDto.armacao());
+        venda.setArmacaoId(vendaDto.armacaoId());
         venda.setTotal(vendaDto.total());
 
         return vendaRepository.save(venda);

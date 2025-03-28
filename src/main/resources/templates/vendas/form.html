@@ -24,18 +24,20 @@
 
     <form th:action="@{/vendas}" th:object="${venda}" method="post">
 
-        <!-- Seção de Datas -->
+
         <div class="form-section">
             <h3>Datas</h3>
             <div class="form-group">
                 <label>Data da Venda:</label>
                 <input type="date" id="dataVenda" th:field="*{dataVenda}">
+                <h1></h1>
                 <button type="button" onclick="setTodayDate('dataVenda')">Usar Hoje</button>
             </div>
 
             <div class="form-group">
                 <label>Data de Entrega:</label>
                 <input type="date" id="dataEntrega" th:field="*{dataEntrega}">
+                <h1></h1>
                 <button type="button" onclick="setTodayDate('dataEntrega')">Usar Hoje</button>
             </div>
         </div>
@@ -103,7 +105,13 @@
         <div class="form-section">
             <div class="form-group">
                 <label>Armação:</label>
-                <input type="text" th:field="*{armacao}">
+                <select th:field="*{armacaoId}" >
+                    <option value="">Selecione uma armação</option>
+                    <option th:each="armacao : ${armacoesDisponiveis}"
+                            th:value="${armacao.id}"
+                            th:text="${armacao.marca + ' - ' + armacao.codigo + ' (Estoque: ' + armacao.quantidade + ')'}">
+                    </option>
+                </select>
             </div>
 
             <div class="form-group">

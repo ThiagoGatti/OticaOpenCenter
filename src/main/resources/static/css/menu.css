@@ -1,109 +1,73 @@
-/* menu css */
-
+/* Estilo do Menu Lateral */
 .menu-lateral {
   width: 250px;
   height: 100vh;
-  background-color: var(--azul-principal);
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-escuro));
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   padding: 20px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.2);
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .menu-lateral h2 {
   text-align: center;
-  margin-bottom: 30px;
   font-size: 1.8em;
-  color: #fff;
-  text-transform: uppercase;
+  color: #f1f1f1;
+  margin-bottom: 20px;
 }
 
+/* Categorias */
+.categoria-menu {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #e0e0e0;
+  margin: 15px 0 5px;
+  padding-left: 10px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+}
+
+/* Estilo da Lista */
 .menu-lateral ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
 .menu-lateral ul li {
-  position: relative;
-  margin: 12px 0;
+  margin: 10px 0;
 }
 
 .menu-lateral ul li a {
-  color: white;
+  color: #f8f8f8;
   text-decoration: none;
   font-size: 16px;
-  display: block;
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
   border-radius: 6px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease-in-out;
 }
 
 .menu-lateral ul li a:hover {
-  background-color: var(--azul-escuro);
-  transform: translateX(10px);
-}
-
-.submenu-content {
-  display: none;
-  position: absolute;
-  top: -15px;
-  left: calc(100% - 15px);
-  min-width: 220px;
-  background: var(--azul-escuro);
-  z-index: 1001;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-  border-radius: 0 8px 8px 0;
-}
-
-.submenu:hover .submenu-content {
-  display: block;
-  animation: slideIn 0.3s forwards;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.submenu-trigger {
-  position: relative;
-  padding-right: 40px !important;
-}
-
-.submenu-trigger::after {
-  content: "›";
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  transition: all 0.3s ease;
-}
-
-.submenu:hover .submenu-trigger::after {
-  transform: translateY(-50%) rotate(90deg);
-  right: 15px;
-}
-
-.submenu-content li {
-  margin: 0;
-  border-bottom: 1px solid #004b5f;
-}
-
-.submenu-content li:last-child {
-  border-bottom: none;
-}
-
-.submenu-content a {
-  font-size: 14px;
-  padding: 12px 25px;
-  transition: all 0.2s ease;
-}
-
-.submenu-content a:hover {
-  background-color: #004b5f;
+  background-color: rgba(255, 255, 255, 0.2);
   transform: translateX(5px);
 }
+
+/* Ícones */
+.item-menu i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #f1f1f1;
+}
+

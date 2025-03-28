@@ -18,16 +18,8 @@ public class VendaForm {
     private BigDecimal oeEsferico;
     private BigDecimal oeCilindrico;
     private BigDecimal dp;
+    private Long armacaoId;
     private BigDecimal adicao;
-    private String armacao;
     private BigDecimal total;
 
-    // Getters e Setters para todos os campos
-    public LocalDate getDataEntrega() { return dataEntrega; }
-    public void setDataEntrega(LocalDate dataEntrega) { this.dataEntrega = dataEntrega; }
-
-    public String getNomeComprador() { return nomeComprador; }
-    public void setNomeComprador(String nomeComprador) { this.nomeComprador = nomeComprador; }
-
-    // Repetir para todos os outros campos...
 }

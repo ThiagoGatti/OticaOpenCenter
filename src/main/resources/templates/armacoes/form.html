@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${armacaoForm?.id != null ? 'Editar' : 'Nova'} + ' Armação'"></title>
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/edit.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<div class="conteudo">
+  <h1 th:text="${armacaoForm?.id != null ? 'Editar' : 'Nova'} + ' Armação'"></h1>
+
+  <form th:action="@{/armacoes}" th:object="${armacaoForm}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-section">
+      <div class="form-group">
+        <label>Marca:</label>
+        <input type="text" th:field="*{marca}" required
+               th:classappend="${#fields.hasErrors('marca')} ? 'input-error'">
+        <small class="error-message" th:if="${#fields.hasErrors('marca')}"
+               th:errors="*{marca}"></small>
+      </div>
+      <div class="form-group">
+      <label>Código Único:</label>
+      <input type="text" th:field="*{codigo}" required
+             th:classappend="${#fields.hasErrors('codigo')} ? 'input-error'">
+      <small class="error-message" th:if="${#fields.hasErrors('codigo')}"
+             th:errors="*{codigo}"></small>
+    </div>
+      <div class="form-group">
+        <label>Referência:</label>
+        <input type="text" th:field="*{referencia}" required
+               th:classappend="${#fields.hasErrors('referencia')} ? 'input-error'">
+        <small class="error-message" th:if="${#fields.hasErrors('referencia')}"
+               th:errors="*{referencia}"></small>
+      </div>
+
+      <!-- Campo Nota Fiscal -->
+      <div class="form-group">
+        <label>Nota Fiscal:</label>
+        <input type="text" th:field="*{notaFiscal}">
+      </div>
+
+      <!-- Campos Numéricos -->
+      <div class="form-columns">
+        <div class="form-group">
+          <label>Custo (R$):</label>
+          <input type="number" step="0.01" th:field="*{custo}" required min="0"
+                 th:classappend="${#fields.hasErrors('custo')} ? 'input-error'">
+          <small class="error-message" th:if="${#fields.hasErrors('custo')}"
+                 th:errors="*{custo}"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Preço de Venda (R$):</label>
+          <input type="number" step="0.01" th:field="*{precoVenda}" required min="0.01"
+                 th:classappend="${#fields.hasErrors('precoVenda')} ? 'input-error'">
+          <small class="error-message" th:if="${#fields.hasErrors('precoVenda')}"
+                 th:errors="*{precoVenda}"></small>
+        </div>
+      </div>
+
+      <!-- Campo Quantidade -->
+      <div class="form-group">
+        <label>Quantidade Inicial:</label>
+        <input type="number" th:field="*{quantidade}" required min="0"
+               th:classappend="${#fields.hasErrors('quantidade')} ? 'input-error'">
+        <small class="error-message" th:if="${#fields.hasErrors('quantidade')}"
+               th:errors="*{quantidade}"></small>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="botao-salvar">Salvar</button>
+      <a th:href="@{/armacoes}" class="botao-cancelar">Cancelar</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.oticaopencenter.controlador.venda;
 
+import com.oticaopencenter.controlador.armacao.domain.ArmacaoModel;
+import com.oticaopencenter.controlador.armacao.usecases.ArmacaoUsecase;
 import com.oticaopencenter.controlador.venda.domain.VendaModel;
 import com.oticaopencenter.controlador.venda.dtos.VendaDto;
 import com.oticaopencenter.controlador.venda.dtos.VendaForm;
@@ -10,16 +12,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/vendas")
 public class VendaController {
 
     private final VendaUsecase vendaService;
+    private final ArmacaoUsecase armacaoUsecase;
 
-    public VendaController(VendaUsecase vendaService) {
+    public VendaController(VendaUsecase vendaService, ArmacaoUsecase armacaoUsecase) {
         this.vendaService = vendaService;
+        this.armacaoUsecase = armacaoUsecase;
     }
+
 
     @GetMapping
     public String listVendas(
@@ -41,6 +47,8 @@ public class VendaController {
 
     @GetMapping("/nova")
     public String newVendaForm(Model model) {
+        List<ArmacaoModel> armacoesDisponiveis = armacaoUsecase.findAvailableArmacoes(); // Você precisará criar este método
+        model.addAttribute("armacoesDisponiveis", armacoesDisponiveis);
         model.addAttribute("venda", new VendaDto(
                 LocalDate.now(), // dataVenda
                 null,            // dataEntrega
@@ -53,15 +61,21 @@ public class VendaController {
                 BigDecimal.ZERO, // oeCilindrico
                 BigDecimal.ZERO, // dp
                 BigDecimal.ZERO, // adicao
-                "",              // armacao
+                null,              // armacao
                 BigDecimal.ZERO  // total
         ));
         return "vendas/form";
     }
     @GetMapping("/{id}")
     public String getVendaDetails(@PathVariable Long id, Model model) {
-        VendaModel venda = vendaService.getVendaById(id); // Você precisará implementar este método no usecase
+
+        VendaModel venda = vendaService.getVendaById(id);
+        ArmacaoModel armacao = null;
+        if (venda.getArmacaoId() != null) {
+            armacao = armacaoUsecase.findById(venda.getArmacaoId());
+        }
         model.addAttribute("venda", venda);
+        model.addAttribute("armacao", armacao);
         return "vendas/detalhes";
     }
     @PostMapping
@@ -78,7 +92,7 @@ public class VendaController {
                 form.getOeCilindrico() != null ? form.getOeCilindrico() : BigDecimal.ZERO,
                 form.getDp() != null ? form.getDp() : BigDecimal.ZERO,
                 form.getAdicao() != null ? form.getAdicao() : BigDecimal.ZERO,
-                form.getArmacao(),
+                form.getArmacaoId(),
                 form.getTotal() != null ? form.getTotal() : BigDecimal.ZERO
         );
 

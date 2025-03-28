@@ -1,7 +1,10 @@
 <div th:fragment="menu" xmlns:th="http://www.thymeleaf.org">
   <link rel="stylesheet" th:href="@{/css/menu.css}">
+  <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT.js" crossorigin="anonymous"></script>
+
   <div class="menu-lateral">
     <div class="logo-container">
+      <h2>Ótica OpenCenter</h2>
     </div>
 
     <nav class="navegacao-principal">
@@ -12,12 +15,14 @@
           <ul>
             <li>
               <a th:href="@{/vendas}" class="item-menu">
+                <i class="fas fa-shopping-cart"></i>
                 <span>Vendas</span>
               </a>
             </li>
             <li>
-              <a th:href="@{/produtos}" class="item-menu">
-                <span>Produtos</span>
+              <a th:href="@{/armacoes}" class="item-menu">
+                <i class="fas fa-glasses"></i>
+                <span>Armações</span>
               </a>
             </li>
           </ul>
@@ -28,21 +33,14 @@
           <ul>
             <li>
               <a th:href="@{/admins}" class="item-menu">
+                <i class="fas fa-user-shield"></i>
                 <span>Administradores</span>
               </a>
             </li>
           </ul>
         </li>
+
       </ul>
     </nav>
-
-    <!-- Logout -->
-    <div class="sessao-usuario">
-      <form th:action="@{/logout}" method="post" class="form-logout">
-        <button type="submit" class="botao-logout">
-          <span>Sair</span>
-        </button>
-      </form>
-    </div>
   </div>
 </div>

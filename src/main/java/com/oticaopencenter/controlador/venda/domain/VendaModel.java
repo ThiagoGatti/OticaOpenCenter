@@ -29,7 +29,6 @@ public class VendaModel {
     private BigDecimal oeCilindrico;
     private BigDecimal dp;
     private BigDecimal adicao;
-
-    private String armacao;
+    private Long armacaoId;
     private BigDecimal total;
 }
