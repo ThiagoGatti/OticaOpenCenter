@@ -99,4 +99,11 @@ public class VendaController {
         vendaService.createVenda(dto);
         return "redirect:/vendas";
     }
+
+    @GetMapping("/excluir/{id}")
+    public String deleteVenda(@PathVariable Long id) {
+        vendaService.deleteVenda(id);
+        return "redirect:/vendas";
+    }
+
 }
