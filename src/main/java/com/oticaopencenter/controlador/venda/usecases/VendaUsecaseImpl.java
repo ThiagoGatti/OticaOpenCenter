@@ -89,7 +89,6 @@ public class VendaUsecaseImpl implements VendaUsecase {
 
         return vendaRepository.save(venda);
     }
-
     @Override
     public VendaModel updateVenda(Long id, VendaDto vendaDto) {
         VendaModel venda = vendaRepository.findById(id)
