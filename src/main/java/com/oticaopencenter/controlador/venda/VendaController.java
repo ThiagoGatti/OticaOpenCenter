@@ -47,22 +47,25 @@ public class VendaController {
 
     @GetMapping("/nova")
     public String newVendaForm(Model model) {
-        List<ArmacaoModel> armacoesDisponiveis = armacaoUsecase.findAvailableArmacoes(); // Você precisará criar este método
+        List<ArmacaoModel> armacoesDisponiveis = armacaoUsecase.findAvailableArmacoes();
         model.addAttribute("armacoesDisponiveis", armacoesDisponiveis);
         model.addAttribute("venda", new VendaDto(
-                LocalDate.now(), // dataVenda
-                null,            // dataEntrega
-                "",              // nomeComprador
-                "",              // celular
-                "",              // lente
-                BigDecimal.ZERO, // odEsferico
-                BigDecimal.ZERO, // odCilindrico
-                BigDecimal.ZERO, // oeEsferico
-                BigDecimal.ZERO, // oeCilindrico
-                BigDecimal.ZERO, // dp
-                BigDecimal.ZERO, // adicao
-                null,            // armacao
-                BigDecimal.ZERO  // total
+                LocalDate.now(),
+                null,
+                "",
+                "",
+                "",
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                null,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                ""  // Valor inicial para formaPagamento
         ));
         return "vendas/form";
     }
@@ -93,7 +96,10 @@ public class VendaController {
                 form.getDp() != null ? form.getDp() : BigDecimal.ZERO,
                 form.getAdicao() != null ? form.getAdicao() : BigDecimal.ZERO,
                 form.getArmacaoId(),
-                form.getTotal() != null ? form.getTotal() : BigDecimal.ZERO
+                form.getTotal() != null ? form.getTotal() : BigDecimal.ZERO,
+                form.getOdEixo() != null ? form.getOeEixo() : BigDecimal.ZERO,
+                form.getOeEixo() != null ? form.getOdEixo() : BigDecimal.ZERO,
+                form.getFormaPagamento()
         );
 
         vendaService.createVenda(dto);

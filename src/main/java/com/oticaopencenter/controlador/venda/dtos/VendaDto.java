@@ -3,6 +3,7 @@ package com.oticaopencenter.controlador.venda.dtos;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
 public record VendaDto(
         LocalDate dataVenda,
         LocalDate dataEntrega,
@@ -16,7 +17,10 @@ public record VendaDto(
         BigDecimal dp,
         BigDecimal adicao,
         Long armacaoId,
-        BigDecimal total
+        BigDecimal total,
+        BigDecimal odEixo,
+        BigDecimal oeEixo,
+        String formaPagamento
 ) {
     public VendaDto() {
         this(
@@ -32,7 +36,10 @@ public record VendaDto(
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 null,
-                BigDecimal.ZERO
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                ""
         );
     }
 }

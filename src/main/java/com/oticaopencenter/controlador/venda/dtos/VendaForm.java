@@ -21,5 +21,8 @@ public class VendaForm {
     private Long armacaoId;
     private BigDecimal adicao;
     private BigDecimal total;
+    private BigDecimal odEixo;
+    private BigDecimal oeEixo;
+    private String formaPagamento;
 
 }

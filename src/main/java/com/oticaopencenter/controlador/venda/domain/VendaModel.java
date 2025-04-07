@@ -29,4 +29,7 @@ public class VendaModel {
     private BigDecimal adicao;
     private Long armacaoId;
     private BigDecimal total;
+    private BigDecimal odEixo;
+    private BigDecimal oeEixo;
+    private String formaPagamento;
 }

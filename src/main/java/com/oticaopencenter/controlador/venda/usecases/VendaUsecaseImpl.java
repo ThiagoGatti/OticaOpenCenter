@@ -82,10 +82,16 @@ public class VendaUsecaseImpl implements VendaUsecase {
         venda.setOdCilindrico(vendaDto.odCilindrico() != null ? vendaDto.odCilindrico() : BigDecimal.ZERO);
         venda.setOeEsferico(vendaDto.oeEsferico() != null ? vendaDto.oeEsferico() : BigDecimal.ZERO);
         venda.setOeCilindrico(vendaDto.oeCilindrico() != null ? vendaDto.oeCilindrico() : BigDecimal.ZERO);
+
+        venda.setOdEixo(vendaDto.odEixo() != null ? vendaDto.odEixo() : BigDecimal.ZERO);
+        venda.setOeEixo(vendaDto.oeEixo() != null ? vendaDto.oeEixo() : BigDecimal.ZERO);
+
         venda.setDp(vendaDto.dp() != null ? vendaDto.dp() : BigDecimal.ZERO);
         venda.setAdicao(vendaDto.adicao() != null ? vendaDto.adicao() : BigDecimal.ZERO);
         venda.setArmacaoId(vendaDto.armacaoId());
         venda.setTotal(vendaDto.total() != null ? vendaDto.total() : BigDecimal.ZERO);
+
+        venda.setFormaPagamento(vendaDto.formaPagamento());
 
         return vendaRepository.save(venda);
     }

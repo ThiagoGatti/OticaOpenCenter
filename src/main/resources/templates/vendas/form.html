@@ -75,6 +75,10 @@
                         <label>Cilíndrico:</label>
                         <input type="number" step="0.25" th:field="*{odCilindrico}">
                     </div>
+                    <div class="form-group">
+                        <label>Eixo:</label>
+                        <input type="number" step="1" th:field="*{odEixo}">
+                    </div>
                 </div>
 
                 <div class="column">
@@ -86,6 +90,10 @@
                     <div class="form-group">
                         <label>Cilíndrico:</label>
                         <input type="number" step="0.25" th:field="*{oeCilindrico}">
+                    </div>
+                    <div class="form-group">
+                        <label>Eixo:</label>
+                        <input type="number" step="1" th:field="*{oeEixo}">
                     </div>
                 </div>
             </div>
@@ -117,7 +125,16 @@
                 <label>Lente:</label>
                 <input type="text" th:field="*{lente}" required>
             </div>
-
+            <div class="form-group">
+                <label>Forma de Pagamento:</label>
+                <select th:field="*{formaPagamento}" required>
+                    <option value="Dinheiro">À vista</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="PIX">PIX</option>
+                    <option value="Boleto">Boleto</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label>Total:</label>
                 <input type="number" step="0.01" th:field="*{total}" required>
