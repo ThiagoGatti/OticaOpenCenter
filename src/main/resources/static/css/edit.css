@@ -199,7 +199,23 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+/* Estilo para observações */
+.observacao-texto {
+    white-space: pre-wrap;
+    line-height: 1.5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
 
+/* Ajustar layout das colunas */
+.detalhes-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+}
 button[onclick^="setTodayDate"] {
     background-color: #4CAF50; /* Verde */
     color: white;
@@ -210,4 +226,6 @@ button[onclick^="setTodayDate"] {
 button[onclick^="setTodayDate"]:hover {
     background-color: #45a049;
 }
+
+
 

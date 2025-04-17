@@ -14,13 +14,17 @@ public record VendaDto(
         BigDecimal odCilindrico,
         BigDecimal oeEsferico,
         BigDecimal oeCilindrico,
-        BigDecimal dp,
+
         BigDecimal adicao,
         Long armacaoId,
         BigDecimal total,
         BigDecimal odEixo,
         BigDecimal oeEixo,
-        String formaPagamento
+        String formaPagamento,
+        BigDecimal dpEsquerdo,
+        BigDecimal dpDireito,
+        String ordemServico,
+        String observacao
 ) {
     public VendaDto() {
         this(
@@ -34,11 +38,14 @@ public record VendaDto(
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
-                BigDecimal.ZERO,
                 null,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
+                "",
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                "",
                 ""
         );
     }

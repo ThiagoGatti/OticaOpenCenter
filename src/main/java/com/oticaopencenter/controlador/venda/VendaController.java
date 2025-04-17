@@ -60,12 +60,16 @@ public class VendaController {
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
-                BigDecimal.ZERO,
                 null,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
                 BigDecimal.ZERO,
-                ""  // Valor inicial para formaPagamento
+                "",
+                BigDecimal.ZERO,
+                BigDecimal.ZERO,
+                "",
+                ""
+
         ));
         return "vendas/form";
     }
@@ -93,23 +97,19 @@ public class VendaController {
                 form.getOdCilindrico() != null ? form.getOdCilindrico() : BigDecimal.ZERO,
                 form.getOeEsferico() != null ? form.getOeEsferico() : BigDecimal.ZERO,
                 form.getOeCilindrico() != null ? form.getOeCilindrico() : BigDecimal.ZERO,
-                form.getDp() != null ? form.getDp() : BigDecimal.ZERO,
                 form.getAdicao() != null ? form.getAdicao() : BigDecimal.ZERO,
                 form.getArmacaoId(),
                 form.getTotal() != null ? form.getTotal() : BigDecimal.ZERO,
-                form.getOdEixo() != null ? form.getOeEixo() : BigDecimal.ZERO,
-                form.getOeEixo() != null ? form.getOdEixo() : BigDecimal.ZERO,
-                form.getFormaPagamento()
+                form.getOdEixo() != null ? form.getOdEixo() : BigDecimal.ZERO,
+                form.getOeEixo() != null ? form.getOeEixo() : BigDecimal.ZERO,
+                form.getFormaPagamento(),
+                form.getDpEsquerdo() != null ? form.getDpEsquerdo() : BigDecimal.ZERO,
+                form.getDpDireito() != null ? form.getDpDireito() : BigDecimal.ZERO,
+                form.getOrdemServico(),
+                form.getObservacao()
         );
 
         vendaService.createVenda(dto);
         return "redirect:/vendas";
     }
-
-    @GetMapping("/excluir/{id}")
-    public String deleteVenda(@PathVariable Long id) {
-        vendaService.deleteVenda(id);
-        return "redirect:/vendas";
-    }
-
 }

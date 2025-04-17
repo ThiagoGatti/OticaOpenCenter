@@ -79,6 +79,10 @@
                         <label>Eixo:</label>
                         <input type="number" step="1" th:field="*{odEixo}">
                     </div>
+                    <div class="form-group">
+                        <label>DP Direito:</label>
+                        <input type="number" step="0.1" th:field="*{dpDireito}">
+                    </div>
                 </div>
 
                 <div class="column">
@@ -95,12 +99,12 @@
                         <label>Eixo:</label>
                         <input type="number" step="1" th:field="*{oeEixo}">
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label>DP Esquerdo:</label>
+                        <input type="number" step="0.1" th:field="*{dpEsquerdo}">
+                    </div>
 
-            <div class="form-group">
-                <label>DP (Distância Pupilar):</label>
-                <input type="number" step="0.1" th:field="*{dp}">
+                </div>
             </div>
 
             <div class="form-group">
@@ -126,6 +130,10 @@
                 <input type="text" th:field="*{lente}" required>
             </div>
             <div class="form-group">
+                <label>Ordem de Serviço:</label>
+                <input type="text" th:field="*{ordemServico}">
+            </div>
+            <div class="form-group">
                 <label>Forma de Pagamento:</label>
                 <select th:field="*{formaPagamento}" required>
                     <option value="Dinheiro">À vista</option>
@@ -139,6 +147,11 @@
                 <label>Total:</label>
                 <input type="number" step="0.01" th:field="*{total}" required>
             </div>
+            <div class="form-group">
+                <label>Observações:</label>
+                <textarea th:field="*{observacao}" rows="3"></textarea>
+            </div>
+
         </div>
 
         <div class="form-actions">

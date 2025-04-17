@@ -68,9 +68,14 @@
       </div>
 
       <div class="detalhes-item">
-        <span>DP:</span>
-        <span th:text="${venda.dp}"></span>
+        <span>DP Esquerdo:</span>
+        <span th:text="${venda.dpEsquerdo}"></span>
       </div>
+      <div class="detalhes-item">
+        <span>DP Direito:</span>
+        <span th:text="${venda.dpDireito}"></span>
+      </div>
+
       <div class="detalhes-item">
         <span>Adição:</span>
         <span th:text="${venda.adicao}"></span>
@@ -87,6 +92,7 @@
         <span>Lente:</span>
         <span th:text="${venda.lente}"></span>
       </div>
+
       <div class="detalhes-item">
         <span>Forma de Pagamento:</span>
         <span th:text="${venda.formaPagamento}"></span>
@@ -94,6 +100,14 @@
       <div class="detalhes-item">
         <span>Total:</span>
         <span th:text="${#numbers.formatCurrency(venda.total)}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span>Ordem de Serviço:</span>
+        <span th:text="${venda.ordemServico}"></span>
+      </div>
+      <div class="detalhes-item">
+        <span>Observações:</span>
+        <p th:text="${venda.observacao}" class="observacao-texto"></p>
       </div>
     </div>
   </div>

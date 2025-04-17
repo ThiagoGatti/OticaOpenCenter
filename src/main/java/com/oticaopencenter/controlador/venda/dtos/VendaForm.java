@@ -24,5 +24,9 @@ public class VendaForm {
     private BigDecimal odEixo;
     private BigDecimal oeEixo;
     private String formaPagamento;
+    private BigDecimal dpEsquerdo;
+    private BigDecimal dpDireito;
+    private String ordemServico;
+    private String observacao;
 
 }

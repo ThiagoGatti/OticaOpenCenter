@@ -25,11 +25,14 @@ public class VendaModel {
     private BigDecimal odCilindrico;
     private BigDecimal oeEsferico;
     private BigDecimal oeCilindrico;
-    private BigDecimal dp;
     private BigDecimal adicao;
     private Long armacaoId;
     private BigDecimal total;
     private BigDecimal odEixo;
     private BigDecimal oeEixo;
     private String formaPagamento;
+    private BigDecimal dpEsquerdo;
+    private BigDecimal dpDireito;
+    private String ordemServico;
+    private String observacao;
 }

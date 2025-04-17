@@ -86,12 +86,15 @@ public class VendaUsecaseImpl implements VendaUsecase {
         venda.setOdEixo(vendaDto.odEixo() != null ? vendaDto.odEixo() : BigDecimal.ZERO);
         venda.setOeEixo(vendaDto.oeEixo() != null ? vendaDto.oeEixo() : BigDecimal.ZERO);
 
-        venda.setDp(vendaDto.dp() != null ? vendaDto.dp() : BigDecimal.ZERO);
         venda.setAdicao(vendaDto.adicao() != null ? vendaDto.adicao() : BigDecimal.ZERO);
         venda.setArmacaoId(vendaDto.armacaoId());
         venda.setTotal(vendaDto.total() != null ? vendaDto.total() : BigDecimal.ZERO);
 
         venda.setFormaPagamento(vendaDto.formaPagamento());
+        venda.setDpEsquerdo(vendaDto.dpEsquerdo() != null ? vendaDto.dpEsquerdo() : BigDecimal.ZERO);
+        venda.setDpDireito(vendaDto.dpDireito() != null ? vendaDto.dpDireito() : BigDecimal.ZERO);
+        venda.setOrdemServico(vendaDto.ordemServico());
+        venda.setObservacao(vendaDto.observacao());
 
         return vendaRepository.save(venda);
     }
@@ -108,10 +111,13 @@ public class VendaUsecaseImpl implements VendaUsecase {
         venda.setOdCilindrico(vendaDto.odCilindrico());
         venda.setOeEsferico(vendaDto.oeEsferico());
         venda.setOeCilindrico(vendaDto.oeCilindrico());
-        venda.setDp(vendaDto.dp());
         venda.setAdicao(vendaDto.adicao());
         venda.setArmacaoId(vendaDto.armacaoId());
         venda.setTotal(vendaDto.total());
+        venda.setDpEsquerdo(vendaDto.dpEsquerdo());
+        venda.setDpDireito(vendaDto.dpDireito());
+        venda.setOrdemServico(vendaDto.ordemServico());
+        venda.setObservacao(vendaDto.observacao());
 
         return vendaRepository.save(venda);
     }
